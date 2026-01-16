@@ -1,0 +1,228 @@
+<!--  COPYRIGHT TO OXDEAD,FACEPUNCH  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garry's Mod Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Roboto Condensed', Arial, sans-serif;
+        }
+
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .static-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .top-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .server-icon {
+            height: 6vh;
+            width: 6vh;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .icon-text {
+            color: #ccc;
+            font-size: 2.5vh;
+            font-weight: bold;
+        }
+
+        .server-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .server-name {
+            color: #ccc;
+            font-size: 3vh;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .server-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .server-tag {
+            padding: 3px 8px;
+            background-color: #333;
+            color: #aaa;
+            font-size: 1.5vh;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .info-section {
+            display: flex;
+            gap: 30px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .item-label {
+            color: #ccc;
+            font-size: 2vh;
+            margin-right: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .item-value {
+            padding: 8px 12px;
+            background-color: #222;
+            color: #ccc;
+            font-size: 2.2vh;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .hint-text {
+            color: #ccc;
+            font-size: 2.2vh;
+            font-weight: bold;
+        }
+
+        .hint-panel {
+            position: absolute;
+            bottom: 10vh;
+            left: 10vh;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+        }
+
+        .hint-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hint-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hint-text {
+            font-size: 2.4vh;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="static-background"></div>
+
+        <div class="top-panel">
+            <div class="left-section">
+                <div class="server-icon">
+                    <div class="icon-text">G</div>
+                </div>
+                <div class="server-info">
+                    <div class="server-name">unknown</div>
+                    <div class="server-tags">
+                        <div class="server-tag">Europe</div>
+                        <div class="server-tag">Weekly</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <div class="item-label">Players</div>
+                    <div class="item-value">0/0</div>
+                </div>
+                <div class="info-item">
+                    <div class="item-label">Map</div>
+                    <div class="item-value" id="map_name">unknown</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hint-panel">
+            <div class="hint-icon">
+                <img src="https://s5.iimage.su/s/16/g2nkbnwxXtaX2BwF4ZyO3QyiLEnaDjg5zr9zMreC.png" alt="info">
+            </div>
+            <div class="hint-text">Press F1 for help</div>
+        </div>
+    </div>
+    <script>
+    const backgroundImages = [
+        'https://s5.iimage.su/s/16/g1NAqH3xiRpIkZYMv4UcA2aoV4Jjo5ZFoXcSFtfB.jpg',
+        'https://s5.iimage.su/s/16/gOynfotxEuZWc3tyAcjuqReRGZF2WODGFlMci0Mt.jpg',
+        'https://s5.iimage.su/s/16/gjNa2uzxlVBswEIULY18AZh5mHdEOQ87kyZRAwUP.jpg',
+        'https://s5.iimage.su/s/16/gjTyQ6YxJ2C21puy5DCwK1moLyVbpeNcRAFYc3eJ.jpg',
+        'https://s5.iimage.su/s/16/gdPtvJIxd43hRtT69cwIiXrGnysc25tdzrvGh8ED.jpg',
+        'https://s5.iimage.su/s/16/ggDqwkRx1vOwODsMzGWJbIF5kQppB6CWRznSgykG.jpg'
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+        const randomImage = backgroundImages[randomIndex];
+
+        const backgroundElement = document.querySelector('.static-background');
+        backgroundElement.style.backgroundImage = `url('${randomImage}')`;
+    });
+
+    function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
+        document.getElementsByClassName("server-name")[0].innerHTML = servername
+        document.getElementById("map_name").innerHTML = mapname
+    }
+</script>
+</body>
+</html>
