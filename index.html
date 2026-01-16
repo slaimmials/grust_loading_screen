@@ -222,6 +222,19 @@
     function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
         document.getElementsByClassName("server-name")[0].innerHTML = servername
         document.getElementById("map_name").innerHTML = mapname
+        window.maxPlayers = maxplayers
+    }
+
+    function UpdatePlayerCount(players) {
+        window.currentPlayers = players;
+        updatePlayerCountDisplay();
+    }
+
+    function updatePlayerCountDisplay() {
+        const playersElement = document.getElementById('player_count');
+        if (playersElement && window.maxPlayers !== undefined && window.currentPlayers !== undefined) {
+            playersElement.innerHTML = `${window.currentPlayers}/${window.maxPlayers}`;
+        }
     }
 </script>
 </body>
