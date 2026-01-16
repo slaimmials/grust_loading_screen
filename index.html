@@ -223,7 +223,7 @@
         document.getElementsByClassName("server-name")[0].innerHTML = servername
         document.getElementById("map_name").innerHTML = mapname
         window.maxPlayers = maxplayers
-        playersElement.innerHTML = `0/${window.maxPlayers}`;
+        playersElement.innerHTML = `${serverurl}`;
     }
 
     function UpdatePlayerCount(players) {
