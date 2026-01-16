@@ -221,7 +221,7 @@
 
     function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language ) {
         document.getElementsByClassName("server-name")[0].innerHTML = servername
-        document.getElementById("map_name").innerHTML = mapname
+        document.getElementById("map_name").innerHTML = mapname.replace("rust_","")
         window.maxPlayers = maxplayers
         const playersElement = document.getElementById('player_count');
         playersElement.innerHTML = `0/${maxplayers}`;
