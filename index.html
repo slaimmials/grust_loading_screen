@@ -198,7 +198,7 @@
             <div class="hint-icon">
                 <img src="https://s5.iimage.su/s/16/g2nkbnwxXtaX2BwF4ZyO3QyiLEnaDjg5zr9zMreC.png" alt="info">
             </div>
-            <div class="hint-text">Press F1 for help</div>
+            <div class="hint-text" id="hint-text">Press F1 for help</div>
         </div>
     </div>
     <script>
@@ -223,6 +223,7 @@
         document.getElementsByClassName("server-name")[0].innerHTML = servername
         document.getElementById("map_name").innerHTML = mapname
         window.maxPlayers = maxplayers
+        playersElement.innerHTML = `0/${window.maxPlayers}`;
     }
 
     function UpdatePlayerCount(players) {
@@ -236,6 +237,40 @@
             playersElement.innerHTML = `${window.currentPlayers}/${window.maxPlayers}`;
         }
     }
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    let hints = [
+        'Gather cloth from hemp plants to craft a sleeping bag for a respawn point',
+        'Always place a locks on the doors.',
+        'Upgrade your twig building parts to wood or stone as soon as possible.',
+        'Recycling components at monuments is the fastest way to get early-game resources.',
+        'Tool Cupboards prevent other players from building near your base.',
+        'Check your Tool Cupboard regularly to ensure it has enough materials.',
+        'Use binoculars or a scope to scout areas from a safe distance.',
+        'The satchel charge is a cheap early raiding tool.',
+        'Team up with friends; solo survival is the hardest way to play gRust.',
+        'Keep your base\'s interior complex with traps to slow down raiders.',
+        'Use terrain to your advantage; build on rocks or in dense forests for natural cover.',
+        'Trust no one completely, but temporary alliances can help you achieve common goals.',
+        'You can repair doors using a hammer, saving resources.',
+        'The \'Decay\' mechanic will destroy your base if the Tool Cupboard lacks upkeep resources.',
+        'Use wooden barricades to cover yourself in fight.',
+    ]
+
+    function generateHint() {
+        let number = getRandomInt(1, hints.length-1)
+        document.getElementById("hint-text").innerHTML = hints[number]
+    }
+
+    generateHint()
+    setInterval(() => {
+        generateHint()
+    }, 10000);
 </script>
 </body>
 </html>
